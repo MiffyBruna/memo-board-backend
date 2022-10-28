@@ -15,6 +15,7 @@ def create_app(test_config=None):
     
     # Import models here
     from app.models.memo import Memo
+    from app.models.board import Board
     
     db.init_app(app)
     migrate.init_app(app, db)
