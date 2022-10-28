@@ -12,3 +12,14 @@ class Board(db.Model):
             "title": self.title,
             "owner": self.owner
         }
+
+    def all_memos_json(self):
+        memo_list = []
+        for memo in self.memo:
+            memo_list.append(memo.memo_json())
+        return{
+            "id": self.board_id,
+            "title": self.title,
+            "owner": self.owner,
+            "memos": memo_list
+        }
