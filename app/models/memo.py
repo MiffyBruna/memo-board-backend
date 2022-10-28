@@ -10,7 +10,7 @@ class Memo(db.Model):
 
     def memo_json(self):
         return {
-            "memo_id": self.card_id,
+            "memo_id": self.memo_id,
             "message": self.message,
             "likes_count": self.likes_count
         }
