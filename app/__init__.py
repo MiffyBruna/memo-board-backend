@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from dotenv import load_dotenv
+from flask_cors import CORS
 
 db = SQLAlchemy()
 migrate = Migrate()
+load_dotenv()
 
 DATABASE ='postgresql+psycopg2://postgres:postgres@localhost:5432/memo_board_development'
 
@@ -29,4 +32,5 @@ def create_app(test_config=None):
     app.register_blueprint(board_bp)
     app.register_blueprint(memo_bp)
 
+    CORS(app)
     return app
