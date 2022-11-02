@@ -4,7 +4,7 @@ class Board(db.Model):
     board_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     owner = db.Column(db.String)
-    memo = db.relationship("Card", back_populates="board", lazy=True)
+    memo = db.relationship("Memo", back_populates="board", lazy=True)
 
     def board_json(self):
         return {
