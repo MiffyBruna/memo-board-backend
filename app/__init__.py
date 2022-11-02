@@ -2,19 +2,18 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import load_dotenv
-from flask_cors import CORS
+import os
+
 
 db = SQLAlchemy()
 migrate = Migrate()
 load_dotenv()
 
-DATABASE ='postgresql+psycopg2://postgres:postgres@localhost:5432/memo_board_development'
-
 def create_app(test_config=None):
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
     
     # Import models here
     from app.models.memo import Memo
@@ -32,5 +31,4 @@ def create_app(test_config=None):
     app.register_blueprint(board_bp)
     app.register_blueprint(memo_bp)
 
-    CORS(app)
     return app
