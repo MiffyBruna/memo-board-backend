@@ -2,6 +2,7 @@
 *.o
 
 # Ada Library Information
+.env
 *.ali
 /venv
 **/__pycache__
