@@ -40,7 +40,7 @@ def get_board(board_id):
     return jsonify(response_body), 200
 
 @board_bp.route("/<board_id>/memos")
-def get_all_cards_from_board(board_id):
+def get_all_memoss_from_board(board_id):
     board = Board.query.get(board_id)
     if board is None:
         return make_response({"message": f"Board {board_id} was not found", "status": 404})
@@ -65,7 +65,7 @@ def create_board():
     return jsonify(new_board.board_json()), 201
 
 @board_bp.route("/<board_id>/memos", methods =["POST"])
-def post_card_to_given_board(board_id):
+def post_memos_to_given_board(board_id):
     request_body = request.get_json()
     board= Board.query.get(board_id)
 
